@@ -8,7 +8,7 @@ namespace NeuralNetzzz
     class Perceptron
     {
         public:
-            Perceptron(ActType *activationFunction, int numInputs, float learningRate, float hyperParam, float rationalNum, int randomGenPercision);
+            Perceptron(ActType *activationFunction, int numInputs, float learningRate, float hyperParam, float rationalNum, int randomGenPrecision);
             float activate();
             float inputAtIndex(int inputIndex);
             float weightAtIndex(int weightIndex);
@@ -26,7 +26,7 @@ namespace NeuralNetzzz
             std::default_random_engine generator;
             std::uniform_int_distribution<int> distribution(0,1000000);
             ActType activationFunction;
-            int randomGenPercision;
+            int randomGenPrecision;
             int numInputs;
             float hyperParam;
             float *weights;
