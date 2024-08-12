@@ -1,3 +1,6 @@
+#ifndef DelWeightAndBiasLayerObj
+#define DelWeightAndBiasLayerObj
+
 namespace NeuralNetzzz
 {
     class DelWeightAndBiasLayerObj
@@ -10,8 +13,9 @@ namespace NeuralNetzzz
             float delWeights();
             float delBiases();
             void clear();
+            ~DelWeightAndBiasLayerObj();
         private:
-           DelWeightAndBiasObj *delWeightAndBiasLayer;
-            
-    }
+            DelWeightAndBiasObj *delWeightAndBiasLayer;
+
+    };
 }
