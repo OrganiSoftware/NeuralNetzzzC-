@@ -1,3 +1,6 @@
+#ifndef DynamicArray
+#define DynamicArray
+
 namespace NeuralNetzzz
 {   
     template<typename Type>
@@ -15,7 +18,5 @@ namespace NeuralNetzzz
         
         private:
             Type *array;
-
-
     };
 }

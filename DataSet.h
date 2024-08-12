@@ -1,5 +1,6 @@
 #ifndef DataSet
 #define DataSet
+#include<DynamicArray.h>
 
 namespace NeuralNetzzz
 {   
@@ -15,7 +16,7 @@ namespace NeuralNetzzz
             bool replaceState(int index)
 
         private:
-            float *dataSet;
+            float *inputs;
             Type *expectedOutputs;
             Type *rejectedOutputs;
             float maxValue;

@@ -1,5 +1,7 @@
 #ifndef DelWeightAndBiasLayerObj
 #define DelWeightAndBiasLayerObj
+#include<DelWeightAndBiasObj.h>
+#include<DynamicArray.h>
 
 namespace NeuralNetzzz
 {
