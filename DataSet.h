@@ -13,7 +13,7 @@ namespace NeuralNetzzz
             void storeInJSON(string path);
             void JSONLoad(string path, int sizeOfSubset);
             bool deleteState(int index);
-            bool replaceState(int index);\
+            bool replaceState(int index);
             ~DataSet();
 
         private:
