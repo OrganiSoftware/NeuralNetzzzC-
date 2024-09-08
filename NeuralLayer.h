@@ -14,9 +14,10 @@ namespace NeuralNetzzz
             int numPerceptrons();
             void loadInput(float *inputs);
             void adjustWeightsAndBiases(DelWeightAndBiasLayerObj *delWeightAndBiasLayer);
+            std::vector<NeuralNetzzz::Perceptron> neuralLayer();
             ~NeuralLayer();
         private:
-            NeuralLayer *neuralLayer;
+            std::vector<NeuralNetzzz::Perceptron> neuralLayer;
             ActType activationFunction
             int numPerceptrons;
             float rationalizer;
