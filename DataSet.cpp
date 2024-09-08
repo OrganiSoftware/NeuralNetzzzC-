@@ -43,7 +43,7 @@ NeuralNetzzz::void storeInJSON(string path)
     std::ifstream file(path,std::ifstream::binary);
     Json::value jsonWriter;
     file >> jsonWriter;
-    std::vector<std::vector<String>> jsonStringVector;
+    std::vector<std::vector<string>> jsonStringVector;
     for(auto inputStateIndex=this.expectedOutputs.begining(); inputStateIndex<this.expectedOutputs.size(); inputStateIndex++)
     {
         jsonStringVector.push_back({"inputs": this.inputs[inputStateIndex],
