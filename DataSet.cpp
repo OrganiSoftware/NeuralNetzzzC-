@@ -8,7 +8,7 @@ using namespace NeuralNetzzz;
 using namespace std;
 using namespace Json;
 
-NeuralNetzzz::DataSet(float maxValue, float minValue)
+NeuralNetzzz::DataSet::DataSet(float maxValue, float minValue)
 {
     this.maxValue = maxValue;
     this.minValue = minValue;
@@ -17,7 +17,7 @@ NeuralNetzzz::DataSet(float maxValue, float minValue)
 
 }
 
-NeuralNetzzz::void addState(std::vector<float> inputs, type expectedOutput, std::vector<Type> rejectedOutputs)
+void NeuralNetzzz::DataSet::addState(std::vector<float> inputs, type expectedOutput, std::vector<Type> rejectedOutputs)
 {
     std::vector<float> normlizedInputStates;
     for(auto inputIndex = inputs.begining(); i < inputs.size(); inputIndex++)
@@ -38,7 +38,7 @@ NeuralNetzzz::void addState(std::vector<float> inputs, type expectedOutput, std:
     this.rejectedOutputs.push_back(rejectedOutputs);
 }
 
-NeuralNetzzz::void storeInJSON(string path)
+void NeuralNetzzz::DataSet::storeInJSON(string path)
 {
     std::ifstream file(path,std::ifstream::binary);
     Json::value jsonWriter;
@@ -59,7 +59,7 @@ NeuralNetzzz::void storeInJSON(string path)
     file << jsonWriter;
 }
 
-NeuralNetzzz::void JSONLoad(string path, int sizeOfSubset)
+void NeuralNetzzz::DataSet::JSONLoad(string path, int sizeOfSubset)
 {
     std::ifstream file(path,std::ifstream::binary);
     Json::value jsonReader;
@@ -100,7 +100,7 @@ NeuralNetzzz::void JSONLoad(string path, int sizeOfSubset)
     }
 }
 
-NeuralNetzzz::void deleteState(int index)
+void NeuralNetzzz::DataSet::deleteState(int index)
 {
     std::vector<std::vector<float>> tempInputs;
     std::vector<Type> tempExpectedOutputs;
@@ -108,20 +108,20 @@ NeuralNetzzz::void deleteState(int index)
 
 }
 
-NeuralNetzzz::void replaceState(int index,  std::vector<float> newInputs, type newExpected, std::vector<Type> newRejected)
+void NeuralNetzzz::DataSet::replaceState(int index, std::vector<float> newInputs, type newExpected, std::vector<Type> newRejected)
 {
     this.deleteState(index);
     this.addState(newInputs, newExpected, newRejected);
 }
 
-NeuralNetzzz:: void clear()
+void NeuralNetzzz::DataSet::clear()
 {
     this.inputs.clear();
     this.expectedOutputs.clear();
     this.rejectedOutputs.clear();
 }
 
-NeuralNetzzz::~DataSet()
+NeuralNetzzz::DataSet::~DataSet()
 {
     this.inputs.delete();
     this.expectedOutputs.delete();

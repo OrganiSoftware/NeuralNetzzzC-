@@ -13,7 +13,7 @@ namespace NeuralNetzzz
             void storeInJSON(string path);
             void JSONLoad(string path, int sizeOfSubset);
             void deleteState(int index);
-            void replaceState(int index);
+            void replaceState(int index, std::vector<float> newInputs, type newExpected, std::vector<Type> newRejected);
             void clear();
             ~DataSet();
 
