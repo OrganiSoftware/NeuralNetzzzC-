@@ -62,7 +62,7 @@ void NeuralNetzzz::DataSet::storeInJSON(string path)
 void NeuralNetzzz::DataSet::JSONLoad(string path, int sizeOfSubset)
 {
     std::ifstream file(path,std::ifstream::binary);
-    Json::value jsonReader;
+    Json::Value jsonReader;
     file >> jsonReader;
     for(auto inputStateindex=jsonReader["DataSet"].begining(); inputStateIndex < jsonReader["DataSet"].size(); inputStateIndex++)
     {
