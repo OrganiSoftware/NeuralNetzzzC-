@@ -41,7 +41,7 @@ void NeuralNetzzz::DataSet::addState(std::vector<float> inputs, type expectedOut
 void NeuralNetzzz::DataSet::storeInJSON(string path)
 {
     std::ifstream file(path,std::ifstream::binary);
-    Json::value jsonWriter;
+    Json::Value jsonWriter;
     file >> jsonWriter;
     std::vector<std::vector<string>> jsonStringVector;
     for(auto inputStateIndex=this.expectedOutputs.begining(); inputStateIndex<this.expectedOutputs.size(); inputStateIndex++)
