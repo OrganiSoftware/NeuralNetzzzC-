@@ -1,6 +1,6 @@
 #ifndef NeuralNetwork
 #define NeuralNetwork
-#include<NeuralLayer.h>
+
 
 namespace NeuralNetzzz
 {   

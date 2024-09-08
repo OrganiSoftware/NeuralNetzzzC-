@@ -1,6 +1,6 @@
 #ifndef NeuralLayer
 #define NeuralLayer
-#include<Perceptron.h>
+
 
 namespace NeuralNetzzz
 {

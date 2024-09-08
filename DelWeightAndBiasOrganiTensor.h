@@ -1,7 +1,6 @@
 #ifndef DelWeightAndBiasOrganiTensor
 #define DelWeightAndBiasOrganiTensor
-#include<DelWeightAndBiasLayerObj.h>
-#include<DynamicArray.h>
+
 
 namespace NeuralNetzzz
 {

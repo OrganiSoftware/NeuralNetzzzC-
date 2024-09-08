@@ -1,6 +1,6 @@
 #ifndef DataSet
 #define DataSet
-#include<DynamicArray.h>
+
 
 namespace NeuralNetzzz
 {   
@@ -17,10 +17,12 @@ namespace NeuralNetzzz
             ~DataSet();
 
         private:
-            float *inputs;
-            Type *expectedOutputs;
-            Type *rejectedOutputs;
+            vector<vector<float>> inputs;
+            vector<Type> expectedOutputs;
+            vector<vector<Type>> rejectedOutputs;
             float maxValue;
             float minValue;
+            float normalizedMin;
+            float normalizedMax;
     };
 }

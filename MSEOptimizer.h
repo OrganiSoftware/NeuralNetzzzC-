@@ -1,7 +1,6 @@
 #ifndef MSEOptimizer
 #define MSEOptimizer
-#include<DelWeightAndBiasOrganiTensor.h>
-#include<random>
+
 
 namespace NeuralNetzzz
 {

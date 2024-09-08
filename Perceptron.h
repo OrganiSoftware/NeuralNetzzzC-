@@ -1,6 +1,5 @@
 #ifndef Perceptron
 #define Perceptron
-#include<random>
 
 namespace NeuralNetzzz
 {
