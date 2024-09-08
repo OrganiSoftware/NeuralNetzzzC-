@@ -9,17 +9,18 @@ namespace NeuralNetzzz
     {
         public:
             DataSet(float maxValue, float minValue);
-            void addState(float *inputs, Type *expectedOutputs, Type *rejectedOutputs);
+            void addState(std::vector<float> inputs, type expectedOutput, std::vector<Type> rejectedOutputs);
             void storeInJSON(string path);
             void JSONLoad(string path, int sizeOfSubset);
-            bool deleteState(int index);
-            bool replaceState(int index);
+            void deleteState(int index);
+            void replaceState(int index);
+            void clear();
             ~DataSet();
 
         private:
-            vector<vector<float>> inputs;
-            vector<Type> expectedOutputs;
-            vector<vector<Type>> rejectedOutputs;
+            std::vector<std::vector<float>> inputs;
+            std::vector<Type> expectedOutputs;
+            std::vector<std::vector<Type>> rejectedOutputs;
             float maxValue;
             float minValue;
             float normalizedMin;

@@ -1,10 +1,14 @@
-#include<DynamicArray.h>
 #include<DataSet.h>
 #include<iostream>
 #include<vector>
+#include <json/value.h>
+#include <fstream>
 
+using namespace NeuralNetzzz;
+using namespace std;
+using namespace Json;
 
-DataSet(float maxValue, float minValue)
+NeuralNetzzz::DataSet(float maxValue, float minValue)
 {
     this.maxValue = maxValue;
     this.minValue = minValue;
@@ -13,9 +17,9 @@ DataSet(float maxValue, float minValue)
 
 }
 
-void addState(vector<float> inputs, type expectedOutput, vector<Type> rejectedOutputs)
+NeuralNetzzz::void addState(std::vector<float> inputs, type expectedOutput, std::vector<Type> rejectedOutputs)
 {
-    vector<float> normlizedInputStates;
+    std::vector<float> normlizedInputStates;
     for(auto inputIndex = inputs.begining(); i < inputs.size(); inputIndex++)
     {
         float normalizedValue = inputs[inputIndex] / (this.maxValue - this.minValue);
@@ -34,8 +38,92 @@ void addState(vector<float> inputs, type expectedOutput, vector<Type> rejectedOu
     this.rejectedOutputs.push_back(rejectedOutputs);
 }
 
-void storeInJSON(string path);
-void JSONLoad(string path, int sizeOfSubset);
-bool deleteState(int index);
-bool replaceState(int index);
-~DataSet();
+NeuralNetzzz::void storeInJSON(string path)
+{
+    std::ifstream file(path,std::ifstream::binary);
+    Json::value jsonWriter;
+    file >> jsonWriter;
+    std::vector<std::vector<String>> jsonStringVector;
+    for(auto inputStateIndex=this.expectedOutputs.begining(); inputStateIndex<this.expectedOutputs.size(); inputStateIndex++)
+    {
+        jsonStringVector.push_back({"inputs": this.inputs[inputStateIndex],
+                                    "expected_output": this.expectedOutputs[inputStateIndex],
+                                    "rejected_outputs": this.rejectedOutputs[inputStateIndex],
+                                    "num_inputs":this.inputs[inputStateIndex].size(),
+                                    "num_states":this.expectedOutputs.size(),
+                                    "max": this.normalizedMax,
+                                    "min": this.normalizedMin});
+        
+    }
+    jsonWriter << {"DataSet": jsonStringVector};
+    file << jsonWriter;
+}
+
+NeuralNetzzz::void JSONLoad(string path, int sizeOfSubset)
+{
+    std::ifstream file(path,std::ifstream::binary);
+    Json::value jsonReader;
+    file >> jsonReader;
+    for(auto inputStateindex=jsonReader["DataSet"].begining(); inputStateIndex < jsonReader["DataSet"].size(); inputStateIndex++)
+    {
+        std::vector<float> subset;
+        std::vector<float> inputs = jsonReader["DataSet"][inputIndex]["inputs"];
+        float average = 0.0;
+        int count = 0;
+        for(auto inputIndex=inputs.begining(); inputIndex < inputs.size(); inputIndex++)
+        {
+            if((inputIndex % sizeOfSubset == 0 && inputIndex != 0) || sizeOfSubset == 1)
+            {
+                if(count != 0)
+                {
+                    subset.push_back(average/count);
+
+                }
+                else
+                {
+                    subset.push_back(inputs[inputIndex]);
+                }
+                count = 0;
+                average = 0;
+            }
+            else
+            {
+                average += inputs[inputIndex];
+                count += 1;
+            }
+        }
+        Type expectedOutput = jsonReader["DataSet"][inputIndex]["expected_output"];
+        std::vector<Type> rejectedOutputs = jsonReader["DataSet"][inputIndex]["rejected_outputs"];
+        this.maxValue = jsonReader["DataSet"][inputIndex]["max"];
+        this.minValue = jsonReader["DataSet"][inputIndex]["min"];
+        this.addState(subset, expectedOutput, rejectedOutputs);
+    }
+}
+
+NeuralNetzzz::void deleteState(int index)
+{
+    std::vector<std::vector<float>> tempInputs;
+    std::vector<Type> tempExpectedOutputs;
+    std::vector<std::vector<Type>> tempRejectedOutputs;
+
+}
+
+NeuralNetzzz::void replaceState(int index,  std::vector<float> newInputs, type newExpected, std::vector<Type> newRejected)
+{
+    this.deleteState(index);
+    this.addState(newInputs, newExpected, newRejected);
+}
+
+NeuralNetzzz:: void clear()
+{
+    this.inputs.clear();
+    this.expectedOutputs.clear();
+    this.rejectedOutputs.clear();
+}
+
+NeuralNetzzz::~DataSet()
+{
+    this.inputs.delete();
+    this.expectedOutputs.delete();
+    this.rejectedOutputs.delete();
+}
