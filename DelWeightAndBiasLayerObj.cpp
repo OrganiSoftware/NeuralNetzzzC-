@@ -1,3 +1,4 @@
+#include<DelWeightAndBiasLayerObj.h>
 #include<DelWeightAndBiasObj.h>
 #include<iostream>
 #include<vector>
@@ -5,24 +6,24 @@
 using namespace NeuralNetzzz;
 using namespace std;
 
-NeuralNetzzz::DelWeightAndBiasLayerObj::DelWeightAndBiasLayerObj(NeuralLayer neuralLayer)
+NeuralNetzzz::DelWeightAndBiasLayerObj::DelWeightAndBiasLayerObj(NeuralNetzzz::NeuralLayer* neuralLayer)
 {
-    for(auto perceptronIndex= 0; perceptronIndex < neuralLayer.numPerceptrons(); perceptronIndex++)
+    for(int perceptronIndex= 0; perceptronIndex < *neuralLayer.numPerceptrons(); perceptronIndex++)
     {
-        NeuralNetzzz::DelWeightAndBiasObj delWeightAndBiasObj = new NeuralNetzzz::DelWeightAndBiasObj(neuralLayer.neuralLayer());
+        NeuralNetzzz::DelWeightAndBiasObj* delWeightAndBiasObj = new NeuralNetzzz::DelWeightAndBiasObj(*neuralLayer.neuralLayer());
         this.delWeightAndBiasLayer.push_back(delWeightAndBiasObj);
     }
 }
 
 void NeuralNetzzz::DelWeightAndBiasLayerObj::averageDelWeightsAndBias()
 {
-    for(auto perceptronIndex= this.delWeightAndBiasLayer.begining(); perceptronIndex < this.delWeightAndBiasLayer.size(); perceptronIndex++)
+    for(int perceptronIndex= this.delWeightAndBiasLayer.begining(); perceptronIndex < this.delWeightAndBiasLayer.size(); perceptronIndex++)
     {
         this.delWeightAndBiasLayer[perceptronIndex].averageDelWeightsAndBias();
     }
 }
 
-void NeuralNetzzz::DelWeightAndBiasLayerObj::addDelWeigthAndBiasCalc(int perceptronIndex, std::vector<float> delWieghts, float delBias)
+void NeuralNetzzz::DelWeightAndBiasLayerObj::addDelWeigthAndBiasCalc(int perceptronIndex, std::vector<float> delWeghts, float delBias)
 {
     this.delWeightAndBiasLayer[perceptronIndex].addDelWeigthAndBiasCalc(delWeights, delBias);
 }
@@ -35,7 +36,7 @@ NeuralNetzzz::DelWeightAndBiasObj NeuralNetzzz::DelWeightAndBiasLayerObj::delWei
 std::vector<float> NeuralNetzzz::DelWeightAndBiasLayerObj::delWeights()
 {
     std::vector<float> weightsList;
-    for(auto perceptronIndex= this.delWeightAndBiasLayer.begining(); perceptronIndex < this.delWeightAndBiasLayer.size(); perceptronIndex++)
+    for(int perceptronIndex= this.delWeightAndBiasLayer.begining(); perceptronIndex < this.delWeightAndBiasLayer.size(); perceptronIndex++)
     {
         weightsList.push_back(this.delWeightAndBiasLayer[perceptronIndex].delWeights());
     }
@@ -45,7 +46,7 @@ std::vector<float> NeuralNetzzz::DelWeightAndBiasLayerObj::delWeights()
 std::vector<float> NeuralNetzzz::DelWeightAndBiasLayerObj::delBiases()
 {
     std::vector<float> biases;
-    for(auto perceptronIndex= this.delWeightAndBiasLayer.begining(); perceptronIndex < this.delWeightAndBiasLayer.size(); perceptronIndex++)
+    for(int perceptronIndex= this.delWeightAndBiasLayer.begining(); perceptronIndex < this.delWeightAndBiasLayer.size(); perceptronIndex++)
     {
         weightsList.push_back(this.delWeightAndBiasLayer[perceptronIndex].delBias());
     }
@@ -54,7 +55,7 @@ std::vector<float> NeuralNetzzz::DelWeightAndBiasLayerObj::delBiases()
 
 void NeuralNetzzz::DelWeightAndBiasLayerObj::clear()
 {
-    for(auto perceptronIndex= this.delWeightAndBiasLayer.begining(); perceptronIndex < this.delWeightAndBiasLayer.size(); perceptronIndex++)
+    for(int perceptronIndex= this.delWeightAndBiasLayer.begining(); perceptronIndex < this.delWeightAndBiasLayer.size(); perceptronIndex++)
     {
         weightsList.push_back(this.delWeightAndBiasLayer[perceptronIndex].clear());
     }
@@ -62,5 +63,5 @@ void NeuralNetzzz::DelWeightAndBiasLayerObj::clear()
 
 NeuralNetzzz::DelWeightAndBiasLayerObj::~DelWeightAndBiasLayerObj()
 {
-    this.delWeightAndBiasLayer.delete();
+
 }

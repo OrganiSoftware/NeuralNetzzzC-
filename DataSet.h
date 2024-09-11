@@ -19,8 +19,8 @@ namespace NeuralNetzzz
 
         private:
             std::vector<std::vector<float>> inputs;
-            std::vector<Type> expectedOutputs;
-            std::vector<std::vector<Type>> rejectedOutputs;
+            std::vector<Type*> expectedOutputs;
+            std::vector<std::vector<Type*>> rejectedOutputs;
             float maxValue;
             float minValue;
             float normalizedMin;

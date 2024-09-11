@@ -17,10 +17,10 @@ NeuralNetzzz::DataSet::DataSet(float maxValue, float minValue)
 
 }
 
-void NeuralNetzzz::DataSet::addState(std::vector<float> inputs, type expectedOutput, std::vector<Type> rejectedOutputs)
+void NeuralNetzzz::DataSet::addState(std::vector<float> inputs, type* expectedOutput, std::vector<Type*> rejectedOutputs)
 {
     std::vector<float> normlizedInputStates;
-    for(auto inputIndex = inputs.begining(); i < inputs.size(); inputIndex++)
+    for(int inputIndex = inputs.begining(); i < inputs.size(); inputIndex++)
     {
         float normalizedValue = inputs[inputIndex] / (this.maxValue - this.minValue);
         if(normalizedValue < this.normalizedMin)
@@ -44,7 +44,7 @@ void NeuralNetzzz::DataSet::storeInJSON(string path)
     Json::Value jsonWriter;
     file >> jsonWriter;
     std::vector<std::vector<string>> jsonStringVector;
-    for(auto inputStateIndex=this.expectedOutputs.begining(); inputStateIndex<this.expectedOutputs.size(); inputStateIndex++)
+    for(int inputStateIndex=this.expectedOutputs.begining(); inputStateIndex<this.expectedOutputs.size(); inputStateIndex++)
     {
         jsonStringVector.push_back({"inputs": this.inputs[inputStateIndex],
                                     "expected_output": this.expectedOutputs[inputStateIndex],
@@ -70,7 +70,7 @@ void NeuralNetzzz::DataSet::JSONLoad(string path, int sizeOfSubset)
         std::vector<float> inputs = jsonReader["DataSet"][inputIndex]["inputs"];
         float average = 0.0;
         int count = 0;
-        for(auto inputIndex=inputs.begining(); inputIndex < inputs.size(); inputIndex++)
+        for(int inputIndex=inputs.begining(); inputIndex < inputs.size(); inputIndex++)
         {
             if((inputIndex % sizeOfSubset == 0 && inputIndex != 0) || sizeOfSubset == 1)
             {
@@ -123,7 +123,5 @@ void NeuralNetzzz::DataSet::clear()
 
 NeuralNetzzz::DataSet::~DataSet()
 {
-    this.inputs.delete();
-    this.expectedOutputs.delete();
-    this.rejectedOutputs.delete();
+    
 }

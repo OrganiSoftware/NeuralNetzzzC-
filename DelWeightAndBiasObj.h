@@ -6,16 +6,17 @@ namespace NeuralNetzzz
     class DelWeightAndBiasObj
     {   
         public:
-            DelWeightAndBiasObj(Perceptron *perceptron);
-            void addDelWeigthAndBiasCalc(float *delWeights, float delBias);
+            DelWeightAndBiasObj(Perceptron* perceptron);
+            void addDelWeigthAndBiasCalc(std::vector<float> delWeights, float delBias);
             void averageDelWeightAndBias();
-            float delWeights();
+            std::vector<float> delWeights();
             void clear();
             float delBias();
             ~DelWeightAndBiasObj();
         private:
             float delBias;
-            float *delWeights;
+            int numWeightCalcs
+            std::vector<float> delWeights;
             bool averaged;
     };
 }
