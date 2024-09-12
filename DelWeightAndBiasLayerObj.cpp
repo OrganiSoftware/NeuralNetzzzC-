@@ -10,7 +10,7 @@ NeuralNetzzz::DelWeightAndBiasLayerObj::DelWeightAndBiasLayerObj(NeuralNetzzz::N
 {
     for(int perceptronIndex= 0; perceptronIndex < *neuralLayer.numPerceptrons(); perceptronIndex++)
     {
-        NeuralNetzzz::DelWeightAndBiasObj* delWeightAndBiasObj = new NeuralNetzzz::DelWeightAndBiasObj(*neuralLayer.neuralLayer());
+        NeuralNetzzz::DelWeightAndBiasObj* delWeightAndBiasObj = new NeuralNetzzz::DelWeightAndBiasObj(*neuralLayer.perceptronAtIndex(perceptronIndex));
         this.delWeightAndBiasLayer.push_back(delWeightAndBiasObj);
     }
 }

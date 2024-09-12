@@ -10,7 +10,7 @@ namespace NeuralNetzzz
         public:
             NeuralLayer(int numInputs, int numPerceptrons, ActType *activationFunction, float learningRate, float hyperParam, float rationalizer);
             float activations();
-            Perceptron perceptronAtIndex(int index);
+            Perceptron* perceptronAtIndex(int index);
             int numPerceptrons();
             void loadInput(float *inputs);
             void adjustWeightsAndBiases(DelWeightAndBiasLayerObj *delWeightAndBiasLayer);
